@@ -4,14 +4,13 @@ const port = 5000
 
 http.createServer((request,response)=>{
     response.setHeader("Content-Type", "text/html; charset=utf-8")
-    console.log(request.url);
     if (request.url == '/html') {
         fs.access("index.html", fs.constants.R_OK, err => {
             if (err) {
                 console.log(err);
             }
             else{
-                fs.createReadStream('index.html').pipe(response)
+                fs.createReadStream('index.html').pipe(reposnse)
             }
         })
     }

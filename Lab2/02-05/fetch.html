@@ -12,7 +12,8 @@
         let label = document.getElementById("fio");
         fetch('/api/name')
             .then(response => response.text())
-            .then(responseText => { console.log(responseText); label.innerHTML = responseText });
+            .then(responseText => { console.log(responseText);
+        label.innerHTML = responseText });
     </script>
 </body>
 </html>

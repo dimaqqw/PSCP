@@ -4,16 +4,24 @@ const port = 5000
 
 http.createServer((req,res) => {
     if (req.url === '/jquery') {
-        fs.readFile('jquery.html', (err,data)=>{
+        fs.access("jquery.html", fs.constants.R_OK, err => {
             if (err) {
                 console.log(err);
-                res.end(`Ошибка: ${err}`)
             }
             else{
-                res.writeHead(200, {'Content-Type': "text/html; charset=utf-8"})
-                res.end(data)
+                fs.createReadStream('jquery.html').pipe(res)
             }
         })
+        // fs.readFile('jquery.html', (err,data)=>{
+        //     if (err) {
+        //         console.log(err);
+        //         res.end(`Ошибка: ${err}`)
+        //     }
+        //     else{a
+        //         res.writeHead(200, {'Content-Type': "text/html; charset=utf-8"})
+        //         res.end(data)
+        //     }
+        // })
     }
     else if(req.url === '/api/name'){
         res.writeHead(200, {'Content-Type': "text/html; charset=utf-8"})
